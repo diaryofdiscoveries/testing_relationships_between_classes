@@ -26,13 +26,21 @@ RSpec.describe SecretDiary do
     end
 
     it "refuses to be written" do
-      expect(secret_diary.write).to eq "Go away!"
+      expect(secret_diary.write("test message")).to eq "Go away!"
     end
 
   end
 
   context "when unlocked" do
-    pending "gets read"
+    before do
+      allow(diary).to receive(:read)
+      allow(diary).to receive(:lock)
+    end
+    it "gets read" do
+      secret_diary.unlock
+      expect(diary).to receive(:read)
+      secret_diary.read
+    end
 
     pending "gets written"
   end
