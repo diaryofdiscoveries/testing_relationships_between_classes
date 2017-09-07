@@ -32,10 +32,7 @@ RSpec.describe SecretDiary do
   end
 
   context "when unlocked" do
-    before do
-      allow(diary).to receive(:read)
-      allow(diary).to receive(:write)
-    end
+  
     it "gets read" do
       secret_diary.unlock
       expect(diary).to receive(:read)
